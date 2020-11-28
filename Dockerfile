@@ -1,8 +1,17 @@
 FROM python:3.8-slim
-COPY . /app
+
+RUN mkdir /app
+
+COPY ./requirements.txt /app
+
 WORKDIR /app
-RUN pip install pymongo tweepy flask
+
+RUN apt-get update
+
+RUN apt-get install python3-dev default-libmysqlclient-dev gcc -y
+
 RUN pip install -r requirements.txt
-EXPOSE 5001 
-ENTRYPOINT [ "python" ] 
+
+COPY . .
+
 CMD [ "python" "run.py" ]
