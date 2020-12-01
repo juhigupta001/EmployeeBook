@@ -128,9 +128,9 @@ def list_employees():
 def assign_employee(id):
   #check_admin()
   employee = Employee.query.get_or_404(id)
-  if employee.is_admin:
+  #if employee.is_admin:
     #Prevent admin from being assigned.
-    abort(403)
+   # abort(403)
   employee_assign_form = EmployeeAssignmentForm(obj=employee)
   if employee_assign_form.validate_on_submit():
     employee.department = employee_assign_form.department.data
