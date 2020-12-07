@@ -9,11 +9,15 @@ class DevelopmentConfig(Config):
 
 class ProductionConfig(Config):
     DEBUG = False
+    
+class TestConfiguration(BaseConfiguration):
+    TESTING = True
 
+    CSRF_ENABLED = False
 
-class TestingConfig(Config):
-    Testing = True
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    DATABASE = 'tests.db'
+    DATABASE_PATH = os.path.join(_basedir, DATABASE)
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///:memory:'  # + DATABASE_PATH
 
 app_config = {
     'development': DevelopmentConfig,
