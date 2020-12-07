@@ -8,6 +8,8 @@ from flask_admin import Admin, AdminIndexView
 from flask_admin.contrib.sqla import ModelView
 
 from config import app_config
+app = Flask(__name__) #create our application object
+app.config.from_object('config.DebugConfiguration') #load our local config file
 
 db = SQLAlchemy()
 login_manager = LoginManager()
